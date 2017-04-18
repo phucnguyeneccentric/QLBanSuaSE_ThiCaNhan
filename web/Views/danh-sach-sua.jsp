@@ -13,19 +13,19 @@
     <div class="col1">
         <p id="sp">Sản phẩm theo hãng sữa</p>
         <ul>
-            <c:forEach var="i" begin="1" end="5" step="1">
-                <li><a href="trang-chu.jsp?maHang=${i}">Hãng sữa ${i}</a></li>
+            <c:forEach items="${dshs}" var="hs">
+                <li><a href="trang-chu.jsp?maHang=${hs.maHangSua}">${hs.tenHangSua}</a></li>
             </c:forEach>
         </ul>
         <p>Sản phẩm theo loại</p>
         <ul>
-            <c:forEach var="i" begin="1" end="5" step="1">
-               <li><a href="trang-chu.jsp?maLoai=${i}">Loại sữa ${i}</a></li>
+            <c:forEach items="${dsls}" var="ls">
+               <li><a href="trang-chu.jsp?maLoai=${ls.maLoai}">${ls.tenLoai}</a></li>
             </c:forEach>
         </ul>
     </div>
     <div class="col2">
-        <div class="thuc-don thuc-don-ngang">
+        <div class="thuc-don thuc-don-ngang">S
             <%@include file="thuc-don.jsp"%>
         </div>
         <div class="col21">
@@ -43,15 +43,15 @@
                 </thead>
                 <tbody>
                     
-                    <c:forEach items="${dsls}" var="ls">    
+                    <c:forEach items="${dss}" var="s">    
                     <tr>
-                        <td style="text-align: center;"><img src="./images/AB007.jpg"/></td>
-                        <td>${ls.maLoai}</td>
-                        <td><a href="trang-thong-tin-sua.jsp?maSua=${ls.maLoai}">${ls.tenLoai}</a></td>
-                          <td style="text-align: right;">200</td>
+                        <td style="text-align: center;"><img src="./images/${s.hinh}"/></td>
+                        <td>${s.maSua}</td>
+                        <td><a href="trang-thong-tin-sua.jsp?maSua=${s.maSua}">${s.tenSua}</a></td>
+                        <td style="text-align: right;">${s.trongLuong}</td>
                         <fmt:setLocale value="vi-VN"></fmt:setLocale>
                         <fmt:formatNumber value="120000" var="donGia" type="number"></fmt:formatNumber>
-                        <td style="text-align: right;">${donGia}</td>
+                        <td style="text-align: right;">${s.donGia}</td>
                         
                     </tr>
                     </c:forEach>

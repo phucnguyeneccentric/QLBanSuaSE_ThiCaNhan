@@ -5,8 +5,12 @@
  */
 package Controllers;
 
+import BusinessLogics.HangSuaBL;
 import BusinessLogics.LoaiSuaBL;
+import BusinessLogics.SuaBL;
+import JavaBeans.HangSua;
 import JavaBeans.LoaiSua;
+import JavaBeans.Sua;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;
@@ -38,9 +42,12 @@ public class DanhSachSuaServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         //Học viên viết thêm các lệnh vào đây...
+        List<Sua> dss = SuaBL.DocTatCa();
+        List<HangSua> dshs = HangSuaBL.docTatCa();
         List<LoaiSua> dsls = LoaiSuaBL.DocTatCa();
-        request.setAttribute("dsls",dsls);
-        
+        request.setAttribute("dss",dss);
+        request.setAttribute("dshs", dshs);
+        request.setAttribute("dsls", dsls);
 
         request.getRequestDispatcher("Views/danh-sach-sua.jsp").include(request, response);
     }

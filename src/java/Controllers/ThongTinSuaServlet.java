@@ -5,6 +5,8 @@
  */
 package Controllers;
 
+import BusinessLogics.SuaBL;
+import JavaBeans.Sua;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,6 +36,10 @@ public class ThongTinSuaServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         //Học viên viết thêm các lệnh vào đây...
+        String maSua = request.getParameter("maSua");
+        Sua sua = SuaBL.thongTinSua(maSua);
+        request.setAttribute("sua",sua);
+
 
         request.getRequestDispatcher("Views/thong-tin-sua.jsp").include(request, response);
     }

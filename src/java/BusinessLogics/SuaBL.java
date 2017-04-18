@@ -11,6 +11,54 @@ import java.util.logging.Logger;
  * Lớp xử lý nghiệp vụ Sữa
  */
 public class SuaBL {
+    public static List<Sua> DocTatCa(){
+        List<Sua> dsSua = new ArrayList<Sua>();
+        Connection ketNoi = ConnectionDB.connect();
+        try {
+            Statement stm = ketNoi.createStatement();
+            ResultSet rs = stm.executeQuery("select * from sua");
+            while(rs.next()){
+                Sua sua = new Sua();
+                sua.setMaSua(rs.getString("ma_sua"));
+                sua.setTenSua(rs.getString("ten_sua"));
+                sua.setMaHangSua(rs.getString("ma_hang_sua"));
+                sua.setMaLoaiSua(rs.getString("ma_loai_sua"));
+                sua.setTrongLuong(rs.getInt("trong_luong"));
+                sua.setDonGia(rs.getInt("don_gia"));
+                sua.setTpDinhDuong(rs.getString("tp_dinh_duong"));
+                sua.setLoiIch(rs.getString("loi_ich"));
+                sua.setHinh(rs.getString("hinh"));
+                dsSua.add(sua);
+            }
+            ketNoi.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(SuaBL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return dsSua;
+    }
+    public static Sua thongTinSua(String maSua){
+        Sua sua = new Sua();
+        Connection ketNoi = ConnectionDB.connect();
+        try {
+            Statement stm = ketNoi.createStatement();
+            ResultSet rs = stm.executeQuery("select * from sua where ma_sua = '"+maSua+"'");
+            while(rs.next()){
+                sua.setMaSua(rs.getString("ma_sua"));
+                sua.setTenSua(rs.getString("ten_sua"));
+                sua.setMaHangSua(rs.getString("ma_hang_sua"));
+                sua.setMaLoaiSua(rs.getString("ma_loai_sua"));
+                sua.setTrongLuong(rs.getInt("trong_luong"));
+                sua.setDonGia(rs.getInt("don_gia"));
+                sua.setTpDinhDuong(rs.getString("tp_dinh_duong"));
+                sua.setLoiIch(rs.getString("loi_ich"));
+                sua.setHinh(rs.getString("hinh"));
+            }
+            ketNoi.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(SuaBL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sua;
+    }
     public static List<Sua> DocSuaTheoTen(String tenSua){
         List<Sua> dsSua = new ArrayList<Sua>();
         Connection ketNoi = ConnectionDB.connect();
