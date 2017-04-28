@@ -25,7 +25,7 @@
         </ul>
     </div>
     <div class="col2">
-        <div class="thuc-don thuc-don-ngang">S
+        <div class="thuc-don thuc-don-ngang">
             <%@include file="thuc-don.jsp"%>
         </div>
         <div class="col21">
